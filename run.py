@@ -1,4 +1,4 @@
-import modelutils
+from modelutils import *
 import cv2
 from ultralytics import YOLO
 
@@ -16,7 +16,7 @@ def get_faces(image):
     
     return faces
 
-model = modelutils.load()
+model = load()
 
 # vid = int(input("Webcam?"))
 vid = 0
@@ -41,7 +41,7 @@ while True:
         face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
         face = cv2.resize(face, (48, 48))
         
-        emotion = modelutils.predict(model, face)
+        emotion = predict(model, face)
 
         cv2.rectangle(image, (top_left_x, top_left_y), (bottom_right_x, bottom_right_y), (0,0,255), 3)
         cv2.putText(image, str(emotion), (top_left_x, top_left_y), cv2.FONT_HERSHEY_COMPLEX, 1.3, (255, 0, 0), 2)
