@@ -5,6 +5,7 @@ import os
 from keras.utils import load_img
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
+from modelutils import *
 
 def create_dataframe(dir):
     image_paths = []
@@ -53,3 +54,12 @@ def get_dataset(TRAIN_DIR = 'images/train', TEST_DIR = 'images/test'):
     y_test = to_categorical(y_test, num_classes=7)
     
     return x_train, y_train, x_test, y_test
+
+x_train, y_train, x_test, y_test = get_dataset()
+
+model = load()
+model = compile(model)
+
+# model = train(model, x_train, y_train, x_test, y_test)
+
+save(model, "test_save")
