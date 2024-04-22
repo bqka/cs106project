@@ -2,15 +2,15 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Dropout, Flatten, MaxPooling2D
 from keras.models import model_from_json
 
-def load(json_file='model/emotiondetector.json', h5_file='model/emotiondetector.h5'):
-    json_file = open(json_file, 'r')
-    data = json_file.read()
-    model = model_from_json(data)
-    model.load_weights(h5_file)
+def load_weights(model, dir='model/emotiondetector.h5'):
+    # json_file = open(json_file, 'r')
+    # data = json_file.read()
+    # model = model_from_json(data)
+    model.load_weights(dir)
     
     return model
 
-def create():
+def create_model():
     model = Sequential()
     model.add(Conv2D(128, kernel_size=(3,3), activation='relu', input_shape=(48,48,1)))
     model.add(MaxPooling2D(pool_size=(2,2)))
