@@ -16,8 +16,7 @@ def get_faces(image):
     
     return faces
 
-model = create_model()
-model = load_weights(model)
+model = load('training_02')
 
 # vid = int(input("Webcam?"))
 vid = 0

@@ -1,12 +1,16 @@
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Dropout, Flatten, MaxPooling2D
 from keras.models import model_from_json
+import keras
+import os
 
-def load_weights(model, dir='model/emotiondetector.h5'):
-    # json_file = open(json_file, 'r')
-    # data = json_file.read()
-    # model = model_from_json(data)
-    model.load_weights(dir)
+def load(file_name='emotiondetector'):
+    path = 'model/'
+    json_path = os.path.join(path, file_name+".json")
+    json_file = open(json_path, 'r')
+    data = json_file.read()
+    model = model_from_json(data)
+    model.load_weights(os.path.join(path, file_name+".h5"))
     
     return model
 
@@ -42,12 +46,12 @@ def create_model():
     return model
     
 def compile(model):
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics='accuracy')
+    model.compile(optimizer=keras.optimizers.Adam(), loss=keras.losses.CategoricalCrossentropy(), metrics=['accuracy'])
     
     return model    
     
 def train(model, x_train, y_train, x_test, y_test):
-    model.fit(x=x_train, y=y_train, batch_size=128, epochs=100, validation_data=(x_test, y_test))
+    model.fit(x=x_train, y=y_train, batch_size=128, epochs=50, validation_data=(x_test, y_test))
 
     return model
 

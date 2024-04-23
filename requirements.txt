@@ -8,3 +8,4 @@ tqdm
 scikit-learn
 pillow
 opencv-python
+ultralytics
