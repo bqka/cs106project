@@ -59,9 +59,9 @@ def get_dataset(TRAIN_DIR = 'images/train', TEST_DIR = 'images/test'):
 x_train, y_train, x_test, y_test = get_dataset()
 
 # model = create_model()
-model = load('training_02')
+model = load('final')
 model = compile(model)
 
 model = train(model, x_train, y_train, x_test, y_test)
 
-save(model, "training_03")
+save(model, "final2")

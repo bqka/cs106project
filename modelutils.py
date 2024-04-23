@@ -51,7 +51,7 @@ def compile(model):
     return model    
     
 def train(model, x_train, y_train, x_test, y_test):
-    model.fit(x=x_train, y=y_train, batch_size=128, epochs=50, validation_data=(x_test, y_test))
+    model.fit(x=x_train, y=y_train, batch_size=128, epochs=150, validation_data=(x_test, y_test))
 
     return model
 
