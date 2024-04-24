@@ -1,6 +1,7 @@
 from modelutils import *
 import cv2
 from ultralytics import YOLO
+import matplotlib.pyplot as plt
 
 def get_faces(image):
     yolo_model = YOLO('yolov8.pt')
@@ -16,10 +17,13 @@ def get_faces(image):
     
     return faces
 
-model = load('training_02')
+model = load('final2')
+model = keras.models.load_model('model/emotiondetector.h5')
+
+# print(model.history)
 
 # vid = int(input("Webcam?"))
-vid = 0
+vid = 1 
 
 if vid == 1:
     cap = cv2.VideoCapture(0)
@@ -42,6 +46,7 @@ while True:
         face = cv2.resize(face, (48, 48))
         
         emotion = predict(model, face)
+        print(emotion)
 
         cv2.rectangle(image, (top_left_x, top_left_y), (bottom_right_x, bottom_right_y), (0,0,255), 3)
         cv2.putText(image, str(emotion), (top_left_x, top_left_y), cv2.FONT_HERSHEY_COMPLEX, 1.3, (255, 0, 0), 2)
@@ -49,3 +54,4 @@ while True:
     cv2.imshow("Output", image)
     if cv2.waitKey(1) == 27:
         break
+    

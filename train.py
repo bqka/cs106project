@@ -56,12 +56,17 @@ def get_dataset(TRAIN_DIR = 'images/train', TEST_DIR = 'images/test'):
     
     return x_train, y_train, x_test, y_test
 
-x_train, y_train, x_test, y_test = get_dataset()
 
-# model = create_model()
-model = load('final')
-model = compile(model)
+def self():
+    x_train, y_train, x_test, y_test = get_dataset()
 
-model = train(model, x_train, y_train, x_test, y_test)
+    # model = create_model()
+    model = load('final')
+    model = compile(model)
 
-save(model, "final2")
+    model = train(model, x_train, y_train, x_test, y_test)
+
+    save(model, "final2")
+    
+if __name__ == '__main__':
+    self()
